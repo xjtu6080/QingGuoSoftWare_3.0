@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;background:#ffffff;}
+table{
+table-layout:fixed
+margin:10px;
+width:900px;
+height:400px;
+border-left:1px solid #666666;
+border-bottom:1px double #666666;
+}
+caption{
+border-right:1px solid #666;
+border-top:1px solid #666;
+border-left:1px solid #666;
+padding: 10px 0 10px 0;
+background-color:#F5F5F5;
+}
+thead tr th{
+padding: 10px 0 10px 0;
+background-color:#90EE90;
+border-bottom:1px double #000080;
+}
+tbody tr{
+text-align:center;
+
+}
+tfoot tr td{
+word-break: break-all; word-wrap:break-word;
+padding: 10px 0 10px 5px;
+background-color:#2E8B57;
+color:#ffffff;
+}
+th,td{
+word-break: break-all; word-wrap:break-word;
+border-right:1px solid #666;
+border-top:1px solid #666;
+}
+.firstcol{
+background-color:#F5F5F5;
+}
+.topline2px td{
+border-top:2px double #2F4F4F;
+}
+.weekend{
+background-color:#FFB6C1;
+}

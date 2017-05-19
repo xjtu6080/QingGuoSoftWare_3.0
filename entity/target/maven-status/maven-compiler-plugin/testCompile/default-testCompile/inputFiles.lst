@@ -1,0 +1,7 @@
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/dao/ListInfoDaoTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/dao/ClassInfoByCourseDaoTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/dao/ClassInfoByClassDaoTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/BaseTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/dao/ClassInfoByTeacherDaoTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/dao/ClassInfoByOptionalDaoTest.java
+/home/llh/Documents/java/code/curriculumSchedule_Back/src/test/java/com/xjtu/service/impl/ClassInfoServiceImplTest.java

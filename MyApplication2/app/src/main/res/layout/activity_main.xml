@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/im"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#4876FF"
+        >
+            <ImageView
+                android:id="@+id/log_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/logg"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_toLeftOf="@+id/log_iv"
+                android:layout_height="match_parent"
+                android:textColor="#FFFAFA"
+                android:text="青果软件"
+                android:textSize="30dp"
+
+                />
+        </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/first_iv"
+        android:background="@drawable/txiao"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:text="请选择学校"
+        android:background="#FFFAFA"
+        android:layout_marginTop="2dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#FFFAFA"
+        >
+        <TextView
+            android:text="中州大学"
+            android:textSize="25dp"
+            android:gravity="center"
+            android:onClick="xuanzeclick5"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/zhongzhou_tv" />
+        <Button
+            android:layout_width="0dp"
+            android:text=">"
+            android:textSize="30dp"
+            android:background="#00000000"
+            android:layout_weight="1"
+            android:onClick="xuanzeclick5"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#FFFAFA"
+        >
+        <TextView
+            android:text="西南医科大学"
+            android:textSize="25dp"
+            android:onClick="xuanzeclick1"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/xinan_tv" />
+
+       <Button
+           android:layout_width="0dp"
+           android:text=">"
+           android:textSize="30dp"
+
+           android:background="#00000000"
+           android:layout_weight="1"
+           android:onClick="xuanzeclick1"
+           android:id="@+id/xinan_btn"
+
+           android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#FFFAFA"
+        >
+        <TextView
+            android:text="福建农业学院"
+            android:textSize="25dp"
+            android:onClick="xuanzeclick2"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/fujian_tv" />
+        <Button
+            android:layout_width="0dp"
+            android:id="@+id/fujian_btn"
+            android:text=">"
+            android:textSize="30dp"
+
+            android:background="#00000000"
+            android:layout_weight="1"
+            android:onClick="xuanzeclick2"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#FFFAFA"
+        >
+        <TextView
+            android:text="长春财经学院"
+            android:textSize="25dp"
+             android:gravity="center"
+            android:onClick="xuanzeclick3"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/changchun_tv" />
+        <Button
+            android:layout_width="0dp"
+            android:text=">"
+            android:textSize="30dp"
+
+            android:background="#00000000"
+            android:layout_weight="1"
+            android:onClick="xuanzeclick3"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:background="#FFFAFA"
+        >
+        <TextView
+            android:text="广东培正学院"
+            android:textSize="25dp"
+            android:onClick="xuanzeclick4"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"
+            android:id="@+id/guangpei_tv" />
+        <Button
+            android:layout_width="0dp"
+            android:text=">"
+            android:textSize="30dp"
+
+            android:background="#00000000"
+            android:layout_weight="1"
+            android:onClick="xuanzeclick4"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/exit_btn"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#0000ff"
+        android:background="#FFFAFA"
+            android:onClick="finsh"
+        android:text="退出"
+        />
+</LinearLayout>

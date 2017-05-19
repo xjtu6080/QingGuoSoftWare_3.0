@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>青果网</title>
+    <link href="css/css.css" rel="stylesheet" type="text/css"/>
+
+    <link href="css/Course.css" rel="stylesheet" type="text/css"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <!-- <script type="text/javascript" src="js/Handal.js"></script> -->
+    <script language="javascript" type="text/javascript">
+        $(function () {
+
+            var Ohref = window.location.href;
+            var UrlStr = Ohref.split("?UrlStr=")[1];
+            // var UrlStr = "http://ydule.me/course/20161/courseList";
+
+
+
+            //用于切换是查询教师课表还是课程课表界面
+            $("#Transfer").click(function () {
+                window.location.href = "TeacherCourse.html?UrlStr=" + UrlStr;
+            });
+
+
+            var SemesterSel = $("#sel_XNXQ");
+            SemesterSel.append("<option value='20161'>2016-2017学年第二学期</option>");
+            SemesterSel.append("<option value='20161'>2016-2017学年第一学期</option>");
+            SemesterSel.append("<option value='20161'>2015-2016学年第二学期</option>");
+            SemesterSel.append("<option value='20161'>2015-2016学年第一学期</option>");
+            SemesterSel.append("<option value='20161'>2014-2015学年第二学期</option>");
+            SemesterSel.append("<option value='20161'>2014-2015学年第一学期</option>");
+
+
+            var xqxn;
+            var kc;
+            var code;
+            var ip = "192.168.28.76:8080";
+            var code1;
+
+
+            <!--11111111111111111111111111111111111111111111111111111111111111111111111111-->
+            <!--学期学年触发课程下拉框-->
+            $("#sel_XNXQ").change(function (e) {
+                $("#displayCode").css("display", "none");
+                xqxn = e.target.value;
+                var obj = {
+                    type: "GET",
+                    url: "http://" + ip + "/course/" + xqxn + "/courseList"
+                };
+
+                $.ajax(obj).done(function (res1) {
+                    createSelect(res1);
+                });
+
+            });
+
+            function createSelect(res1) {
+                $("#sel_teacher").empty();
+                var option1 = "<option selected='selected'>选择课程</option>";
+                $("#sel_teacher").append(option1);
+                for (i = 0; i < res1.length; i++) {
+                    var user = res1[i];
+                    var option = "<option value=" + user.listValue + ">" + user.listName + "</option>";
+                    $("#sel_teacher").append(option);
+                }
+
+            }
+
+
+            $("#img").attr("src", "http://" + ip + "/course/getVerImg?" + Math.random());
+
+
+            <!--222222222222222222222222222222222222222222222222222222222222222222222222-->
+            <!--获取课程信息的触发事件-->
+            $("#sel_teacher").change(function (e) {
+
+                kc = e.target.value;
+
+            });
+
+            $("#showLesson").on("click", function () {
+
+
+                code = $("#text_code").val();
+                if (code.length == 0 || code == code1) {
+                    code = "isNUll";
+                }
+
+
+                <!--当每次点击button时，我们刷新table-->
+                $("table tr td").remove();
+
+
+                var obj = {
+                    contentType: "application/json; charset=utf-8",
+                    type: "POST",
+                    url: "http://" + ip + "/course/queryClassByCourse",
+                    data: JSON.stringify({term: xqxn, course: kc, yzm: code})
+                };
+                code1 = code;
+
+                $.ajax(obj).done(function (res) {
+
+                    if (res['success'] && res['error'] == null) {
+                        $("#displayCode").css("display", "none");
+                        code = "";
+
+                        createTable(res['data']);
+                    } else {
+
+                        var error = res['error'];
+                        alert(error);
+
+                        $("#displayCode").css("display", "inline");
+                        return;
+                    }
+
+                });
+
+
+                <!--插入數據到表中-->
+                function createTable(res) {
+                    for (var i = 0; i < res.length; i++) {
+
+                        var user = res[i];
+                        var table = "<tr> <td>" + user.week + "</td>" + "<td>" + user.lesson + "</td>" + "<td>" + user.info + "</td>"
+                        $("#userList").append(table);
+                    }
+                }
+
+            })
+
+
+        });
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+<!--头部-->
+<div id="header">
+    <div class="top">
+        <div class="nav">
+            <a href="index.html" class="hover"> 网站首页</a>
+            <a href="CourseTable.html?UrlStr=http://jwxt.cqtbi.edu.cn/"> 长春财经学院课程</a>
+            <a href="CourseTable.html?UrlStr=http://jwxt.cqtbi.edu.cn/"> 西南医科大学课程</a>
+            <a href="CourseTable.html?UrlStr=http://jwxt.cqtbi.edu.cn/"> 福建农业学院课程 </a>
+            <a href="CourseTable.html?UrlStr=http://jwxt.cqtbi.edu.cn/"> 广东培正学院课程</a>
+            <a href="CourseTable.html?UrlStr=http://jwxt.cqtbi.edu.cn//"> 中州大学课程 </a>v
+        </div>
+    </div>
+</div>
+
+<div>
+    <input class="jiaoshisel" type="button" value="去查询教师课表" id="Transfer"/>
+
+
+</div>
+
+<div id="Teacher">
+    <form action="" method="post" id="form">
+        <div class="xuenian">
+            <label>学年学期 </label>
+            <select id="sel_XNXQ" class="select1" name="YearId"></select>
+        </div>
+        <div class="geshi">
+            <input type="radio" name="TypeID" value="1" id="TypeID"/>格式一
+            <input type="radio" name="TypeID" value="2" id="TypeID"/>格式二
+            <input type="hidden" name="flag" value="Teacher"/>
+            <input type="hidden" name="flag" value="Teacher"/>
+        </div>
+
+        <div class="yanzheng">
+            <label>验证码 </label>
+            <input id="text_code" name="YZM_code"/>
+            <img id="img"/>
+        </div>
+
+        <div class="jiaoshi">
+            <label>教师 </label>
+            <input id="jiaoshi1"/>
+
+            <select id="sel_teacher" class="jiaoshisel" onchange="ch3()" name="TeacherId">
+
+
+            </select>
+            <button type="button" id="showLesson" class="jiaoshisel">检索</button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <!--添加table77777777777777777777777777777777777777777-->
+
+        <table id="userList" ><!--class="table table-striped table-bordered  table-layout:fixed ;"-->
+            <tr>
+                <th class="text-center ">星期</th>
+                <th class="text-center">节课</th>
+                <th class="text-center">信息</th>
+            </tr>
+    </div>
+
+
+    <!--    <div id="TableStyleOne" style="display: none">
+
+            <table border="0" cellspacing="0" cellpadding="0" id="TableOne">
+                <caption>2015~2016学年第二学期课程表</caption>
+                <thead>
+                <tr>
+                    <th style="background-color:#9ACD32;">节次</th>
+                    <th>星期一</th>
+                    <th>星期二</th>
+                    <th>星期三</th>
+                    <th>星期四</th>
+                    <th>星期五</th>
+                    <th class="weekend">星期六</th>
+                    <th class="weekend">星期日</th>
+                </tr>
+                </thead>
+            </table>
+        </div>-->
+
+    <!--   <div id="TableStyleTwo" style="display: none">
+
+           <table border="0" cellspacing="0" cellpadding="0" id="TableTwo">
+               <caption>2015~2016学年第二学期课程表</caption>
+               <thead>
+               <tr>
+                   <th style="background-color:#9ACD32;">序号</th>
+                   <th>课程</th>
+                   <th>学分</th>
+                   <th>授课方式</th>
+                   <th>课程类别</th>
+                   <th>上课班号</th>
+                   <th>上课班级</th>
+                   <th>上课人数</th>
+                   <th>时间</th>
+                   <th>地点</th>
+               </tr>
+               </thead>
+           </table>
+
+       </div>-->
+</div>
+</body>
+</html>
